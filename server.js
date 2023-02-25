@@ -7,6 +7,8 @@ import connectDB from "./config/db.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
 
 const app = express();
+import dotenv from "dotenv";
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
