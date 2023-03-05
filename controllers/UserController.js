@@ -24,6 +24,9 @@ const registerUser = asyncHandler(async (req, res) => {
             username: user.username,
             followers: user.followers,
             following: user.following,
+            posts: user.posts,
+            pronouns: user.pronouns,
+            about: user.about,
         });
     } else {
         res.status(400);
@@ -45,6 +48,9 @@ const loginUser = asyncHandler(async (req, res) => {
             email: user.email,
             username: user.username,
             userToken: generateToken(user._id),
+            pronouns: user.pronouns,
+            about: user.about,
+            posts: user.posts,
             followers: user.followers,
             following: user.following,
         });
@@ -64,6 +70,11 @@ const getUserProfile = asyncHandler(async (req, res) => {
             fullName: user.fullName,
             email: user.email,
             username: user.username,
+            followers: user.followers,
+            following: user.following,
+            posts: user.posts,
+            pronouns: user.pronouns,
+            about: user.about,
         });
     } else {
         res.status(404);

@@ -16,9 +16,21 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        pronouns: {
+            type: String,
+            default: "",
+        },
+        about: {
+            type: String,
+            default: "",
+        },
         fullName: {
             type: String,
             required: true,
+        },
+        posts: {
+            type: Array,
+            default: [],
         },
         followers: {
             type: Array,
