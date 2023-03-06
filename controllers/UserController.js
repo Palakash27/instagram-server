@@ -82,4 +82,25 @@ const getUserProfile = asyncHandler(async (req, res) => {
     }
 });
 
-export { registerUser, loginUser, getUserProfile };
+const getSearchResults = asyncHandler(async (req, res) => {
+    const { query } = req.query;
+    if (query === "") {
+        res.json([]);
+        return;
+    }
+    const users = await User.find({
+        $or: [
+            { fullName: { $regex: query, $options: "i" } },
+            { username: { $regex: query, $options: "i" } },
+        ],
+    });
+
+    if (users) {
+        res.json(users);
+    } else {
+        res.status(404);
+        throw new Error("No users found");
+    }
+});
+
+export { registerUser, loginUser, getUserProfile, getSearchResults };
