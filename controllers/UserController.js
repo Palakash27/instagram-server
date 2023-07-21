@@ -61,8 +61,13 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getUserProfile = asyncHandler(async (req, res) => {
-    // req.user was set in authMiddleware.js
-    const user = await User.findById(req.user._id);
+    let user;
+    if (req.params.username && req.params.username !== "undefined") {
+        user = await User.findOne({ username: req.params.username });
+    } else {
+        // req.user was set in authMiddleware.js
+        user = await User.findById(req.user._id);
+    }
 
     if (user) {
         res.json({

@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.route("/profile").get(protect, getUserProfile);
+router.route("/profile/:username").get(protect, getUserProfile);
 router.route("/search").get(protect, getSearchResults);
 
 export default router;
