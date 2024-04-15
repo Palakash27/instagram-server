@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 
-const registerUser = asyncHandler(async (req, res) => {
+const signUpUser = asyncHandler(async (req, res) => {
     const { fullName, email, password, username } = req.body;
 
     // check if email exists in db
@@ -60,6 +60,8 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 });
 
+const followerHandler = asyncHandler(async (req, res) => {});
+
 const getUserProfile = asyncHandler(async (req, res) => {
     let user;
     if (req.params.username && req.params.username !== "undefined") {
@@ -108,4 +110,4 @@ const getSearchResults = asyncHandler(async (req, res) => {
     }
 });
 
-export { registerUser, loginUser, getUserProfile, getSearchResults };
+export { signUpUser, loginUser, getUserProfile, getSearchResults };

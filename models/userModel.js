@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema(
@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
         username: {
             type: String,
             required: true,
+            unique: true,
         },
         pronouns: {
             type: String,
@@ -32,14 +33,18 @@ const userSchema = new mongoose.Schema(
             type: Array,
             default: [],
         },
-        followers: {
-            type: Array,
-            default: [],
-        },
-        following: {
-            type: Array,
-            default: [],
-        },
+        followers: [
+            {
+                type: Schema.ObjectId,
+                ref: "User",
+            },
+        ],
+        following: [
+            {
+                type: Schema.ObjectId,
+                ref: "User",
+            },
+        ],
     },
     {
         timestamps: true,
